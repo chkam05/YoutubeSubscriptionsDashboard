@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ustawienia — Youtube Substriptions Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="settings-layout">
+    <div class="settings-top">
+      <div>
+        <h1 id="extension-name">Youtube Substriptions Dashboard</h1>
+        <div class="settings-meta"><span id="extension-version">Wersja 1.0.0.0</span><span aria-hidden="true">·</span><span id="extension-copyright">Copyright (c) Kamil Karpiński</span></div>
+        <div class="panel-description">Kanały, kategorie i harmonogram aktualizacji.</div>
+      </div>
+      <div class="item-actions">
+        <input id="import-data-file" type="file" accept="application/json,.json" hidden>
+        <button id="import-data" class="button" type="button">Importuj JSON</button>
+        <button id="export-data" class="button" type="button">Eksportuj JSON</button>
+        <button id="open-dashboard" class="button button--primary">Otwórz pulpit</button>
+      </div>
+    </div>
+
+    <nav class="settings-tabs" role="tablist" aria-label="Sekcje ustawień">
+      <button id="tab-general" class="settings-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="panel-general" data-settings-tab="general">Główne</button>
+      <button id="tab-categories" class="settings-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-categories" data-settings-tab="categories" tabindex="-1">Kategorie</button>
+      <button id="tab-channels" class="settings-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-channels" data-settings-tab="channels" tabindex="-1">Kanały</button>
+    </nav>
+
+    <div class="settings-grid">
+      <section id="panel-general" class="panel settings-tab-panel" role="tabpanel" aria-labelledby="tab-general" data-tab-panel="general">
+        <h2>Wyświetlanie i aktualizacje</h2>
+        <p class="panel-description">Filmy starsze niż wybrany zakres są automatycznie usuwane z lokalnego cache.</p>
+        <form id="general-form" class="form-grid">
+          <div class="form-field">
+            <label class="label" for="lookback-days">Zakres wstecz (dni)</label>
+            <input id="lookback-days" class="input" type="number" min="1" max="365" required>
+          </div>
+          <div class="form-field">
+            <label class="label" for="refresh-hours">Automatyczne odświeżanie (godziny)</label>
+            <input id="refresh-hours" class="input" type="number" min="1" max="168" required>
+          </div>
+          <div class="form-field">
+            <label class="label" for="theme">Motyw</label>
+            <select id="theme" class="select">
+              <option value="light">Jasny</option>
+              <option value="dark">Ciemny</option>
+            </select>
+          </div>
+          <label class="checkbox-field" for="hide-empty-channels">
+            <input id="hide-empty-channels" type="checkbox">
+            <span>Ukryj kanały, jeżeli nie mają filmów</span>
+          </label>
+          <div><button class="button button--primary" type="submit">Zapisz ustawienia</button></div>
+          <div><button id="restore-hidden" class="button" type="button">Przywróć ukryte filmy</button></div>
+        </form>
+      </section>
+
+      <section id="panel-categories" class="panel settings-tab-panel" role="tabpanel" aria-labelledby="tab-categories" data-tab-panel="categories" hidden>
+        <h2>Kategorie</h2>
+        <p class="panel-description">Kategorie mogą mieć dowolną liczbę poziomów zagnieżdżenia.</p>
+        <form id="category-form" class="form-row">
+          <div class="form-field">
+            <label class="label" for="category-name">Nazwa</label>
+            <input id="category-name" class="input" maxlength="80" required placeholder="np. Technologia">
+          </div>
+          <div class="form-field">
+            <label class="label" for="category-parent">Kategoria nadrzędna</label>
+            <select id="category-parent" class="select"></select>
+          </div>
+          <button class="button button--primary" type="submit">Dodaj kategorię</button>
+        </form>
+        <div class="divider"></div>
+        <div id="category-list" class="item-list"></div>
+      </section>
+
+      <section id="panel-channels" class="panel settings-tab-panel" role="tabpanel" aria-labelledby="tab-channels" data-tab-panel="channels" hidden>
+        <h2>Dodaj kanał</h2>
+        <p class="panel-description">Wklej pełny adres, @nazwę kanału albo identyfikator zaczynający się od UC.</p>
+        <form id="channel-form" class="form-row">
+          <div class="form-field">
+            <label class="label" for="channel-input">Kanał YouTube</label>
+            <input id="channel-input" class="input" required placeholder="https://www.youtube.com/@nazwa">
+          </div>
+          <div class="form-field">
+            <label class="label" for="channel-category">Kategoria</label>
+            <select id="channel-category" class="select"></select>
+          </div>
+          <button id="add-channel" class="button button--primary" type="submit">Dodaj i pobierz</button>
+        </form>
+      </section>
+
+      <section class="panel settings-tab-panel" role="tabpanel" aria-labelledby="tab-channels" data-tab-panel="channels" hidden>
+        <h2>Kanały</h2>
+        <p class="panel-description">Możesz ustawić własną nazwę, zmienić kategorię, odświeżyć lub usunąć kanał.</p>
+        <div class="form-row" style="margin-bottom: 14px;">
+          <input id="channel-search" class="input" type="search" placeholder="Szukaj na liście kanałów…">
+          <button id="refresh-all-options" class="button">Odśwież wszystkie</button>
+        </div>
+        <div id="channel-list" class="item-list"></div>
+      </section>
+    </div>
+  </main>
+  <script type="module" src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Youtube Substriptions Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-row">
+      <div class="brand"><span class="brand-mark">▶</span><span id="extension-name">Youtube Substriptions Dashboard</span></div>
+      <div class="toolbar">
+        <input id="search" class="input search-input" type="search" placeholder="Szukaj kanałów i filmów…" autocomplete="off">
+        <select id="category-filter" class="select category-select" aria-label="Filtr kategorii"></select>
+        <button id="refresh-all" class="button button--primary">Odśwież wszystko</button>
+        <button id="open-settings" class="button button--icon" title="Ustawienia" aria-label="Ustawienia">
+          <svg class="settings-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19.43 12.98c.04-.32.07-.65.07-.98s-.03-.66-.08-.98l2.11-1.65a.5.5 0 0 0 .12-.64l-2-3.46a.5.5 0 0 0-.61-.22l-2.49 1a7.4 7.4 0 0 0-1.69-.98L14.5 2.42A.5.5 0 0 0 14 2h-4a.5.5 0 0 0-.49.42L9.13 5.07c-.61.25-1.17.59-1.69.98l-2.49-1a.5.5 0 0 0-.61.22l-2 3.46a.5.5 0 0 0 .12.64l2.11 1.65c-.04.32-.08.66-.08.98s.03.66.08.98l-2.11 1.65a.5.5 0 0 0-.12.64l2 3.46a.5.5 0 0 0 .61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65A.5.5 0 0 0 10 22h4a.5.5 0 0 0 .49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1a.5.5 0 0 0 .61-.22l2-3.46a.5.5 0 0 0-.12-.64l-2.11-1.65ZM12 15.5A3.5 3.5 0 1 1 12 8a3.5 3.5 0 0 1 0 7.5Z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="main">
+    <div id="summary" class="summary"></div>
+    <div id="content"></div>
+  </main>
+
+  <aside id="progress" class="progress-indicator" aria-live="polite">
+    <div id="progress-title" class="progress-title"></div>
+    <div id="progress-detail" class="progress-detail"></div>
+    <div class="progress-bar"><span id="progress-bar-value"></span></div>
+  </aside>
+
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>

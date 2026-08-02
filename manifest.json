@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Youtube Substriptions Dashboard",
+  "version": "1.0.0.0",
+  "description": "Czytelny pulpit filmów z wybranych kanałów YouTube, z kategoriami, wyszukiwarką i ukrywaniem obejrzanych pozycji.",
+  "permissions": [
+    "storage",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Otwórz Youtube Substriptions Dashboard"
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
